@@ -76,7 +76,7 @@ h4 {
   }
 }
 
-.regolamento-box {
+.regfun-box {
   border: 2px solid black;
   padding: 15px;
   margin-top: -15px;
@@ -99,15 +99,13 @@ h4 {
 .rating-area {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
   margin-top: 20px;
-  margin-bottom: 245px;
+  margin-bottom: 250px;
   border: 2px solid black;
   border-radius: 5px;
   background-color: #f0f0f0;
   padding: 20px;
-  position: relative;
 }
 
 .rating-title {
@@ -129,3 +127,16 @@ h4 {
   flex-direction: column;
   align-items: center;
 }
+
+.save-button {
+  background-color: #f0f0f0;
+  color: orange;
+  border: none;
+  padding: 10px 18px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  border: 2px solid black;
+}
+
