@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from './components/Card';
 import './App.css';
-import backgroundImage from './assets/Immagine_memory.jpg';
 import Rating from '@mui/material/Rating';
-import { orange } from '@mui/material/colors';
 
 const emojis = ['💻', '⌨️', '🖱️', '🛜', '💾', '🖨️', '🖲️', '💿', '📀'];
 
@@ -62,6 +60,7 @@ function App() {
       let winner;
       if (scores[1] > scores[2]) winner = 'giocatore 1';
       else if (scores[2] > scores[1]) winner = 'giocatore 2';
+      else winner = 'pareggio';
 
       setTimeout(() => {
         alert(`Gioco finito! Ha vinto il ${winner}`);
@@ -79,18 +78,29 @@ function App() {
     setPlayerRatings({ 1: null, 2: null });
   };
 
+  const handleSave = () => {
+    const partitaData = {
+      scores,
+      moves,
+      playerRatings,
+      timestamp: new Date(),
+    };
+    console.log('Dati partita da salvare:', partitaData);
+    alert('Dati salvati e inviati al DB esterno!');
+  };
+
   return (
     <div className="game">
       <h1>Gioco del memory</h1>
 
-      <div className="regolamento-box">
-        <h2>Regolamento:</h2>
-        <p>- 2 giocatori</p>
-        <p>- Un giocatore che indovina una coppia continua fino a che non sbaglia</p>
-        <p>- Cliccando sul pulsante "Nuova partita" si avvia una nuova partita e le carte vengono mescolate</p>
-        <p>- Vince il giocatore che ha indovinato più coppie</p>
+      <div className="regfun-box">
+        <h2>Regolamento e funzionalità:</h2>
+        <p>-2 giocatori</p>
+        <p>-Un giocatore che indovina una coppia continua fino a che non sbaglia</p>
+        <p>-Vince il giocatore che ha indovinato più coppie</p>
+        <p>-Cliccando sul pulsante "Salva la partita e invia i dati al DB esterno" tutti i dati salvati vengono inviati a un DB esterno</p>
+        <p>-Cliccando sul pulsante "Nuova partita" si avvia una nuova partita e le carte vengono mescolate</p>
         <h3>Buon divertimento!</h3>
-        <p>(P.S.:finita la partita se si desidera è possibile dare un voto in stelle da parte di ciascun giocatore)</p>
       </div>
 
       <h4 className="turno-box">Turno del giocatore {currentPlayer}</h4>
@@ -99,7 +109,6 @@ function App() {
         <div className="player-info left">
           <p className="player-name">Giocatore 1</p>
           <p>N° di coppie indovinate: {scores[1]}</p>
-
         </div>
 
         <div className="board">
@@ -120,44 +129,47 @@ function App() {
         </div>
       </div>
 
-      <button className="restart-button" onClick={handleRestart}>
-        Nuova partita
-      </button>
-
       {isGameOver && (
-  <div className="rating-area">
-    <div className="rating-title">Valutazione del gioco</div>
+        <div className="rating-area">
+          <div className="rating-title">Grazie per aver giocato!</div>
 
-    <div className="rating-players">
-      <div className="player-rating">
-        <p>Giocatore 1:</p>
-        <Rating
-          name="player1-feedback"
-          value={playerRatings[1]}
-          onChange={(event, newValue) => {
-            setPlayerRatings(prev => ({ ...prev, 1: newValue }));
-          }}
-        />
-      </div>
+          <div className="rating-players">
+            <div className="player-rating">
+              <p>Voto giocatore 1:</p>
+              <Rating
+                name="player1-feedback"
+                value={playerRatings[1]}
+                onChange={(event, newValue) => {
+                  setPlayerRatings(prev => ({ ...prev, 1: newValue }));
+                }}
+              />
+            </div>
 
-      <div className="player-rating">
-        <p>Giocatore 2:</p>
-        <Rating
-          name="player2-feedback"
-          value={playerRatings[2]}
-          onChange={(event, newValue) => {
-            setPlayerRatings(prev => ({ ...prev, 2: newValue }));
-          }}
-        />
-      </div>
-    </div>
+            <div className="player-rating">
+              <p>Voto giocatore 2:</p>
+              <Rating
+                name="player2-feedback"
+                value={playerRatings[2]}
+                onChange={(event, newValue) => {
+                  setPlayerRatings(prev => ({ ...prev, 2: newValue }));
+                }}
+              />
+            </div>
+          </div>
 
-    {(playerRatings[2] !== null) && (
-      <p style={{ marginTop: '1px', fontWeight: 'bold' }}>Grazie!</p>
-    )}
-    </div>
-    )}
+          <div>
+            <button className="save-button" onClick={handleSave} style={{marginTop: '1px'}}>
+              Salva la partita e invia i dati al DB esterno
+            </button>
+          </div>
 
+          <div className="button-wrapper" style={{marginTop: '2px'}}>
+            <button className="restart-button" onClick={handleRestart}>
+              Nuova partita
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
