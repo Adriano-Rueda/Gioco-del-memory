@@ -1,0 +1,131 @@
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background-image: url('./assets/Immagine_memory.jpg'); 
+  overflow: hidden;
+  background-size: cover;      
+  background-position: center; 
+  background-repeat: no-repeat; 
+  margin: 0px;
+  padding: 0;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h2, p {
+  margin: 5px;
+}
+
+h4 {
+  margin: 5px 0;
+  color: orange;
+}
+
+.game-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin: 25px 0;
+  flex-wrap: wrap;
+}
+
+.player-info {
+  width: 120px;
+  text-align: center;
+  font-size: 1rem;
+  background-color: #e3eaf1;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  border: 2px solid black;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 4px;
+  justify-content: center;
+  align-content: center;
+  max-width: 440px; 
+  margin-bottom: 0px;
+  margin: -5px;
+}
+
+.restart-button { 
+  color: orange;
+  border: none;
+  background-color: #f0f0f0;
+  border: 2px solid black;
+  margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+  .game-area {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .player-info {
+    width: 100%;
+  }
+}
+
+.regolamento-box {
+  border: 2px solid black;
+  padding: 15px;
+  margin-top: -15px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+}
+
+.turno-box {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  margin-bottom: -6px;
+}
+
+.player-name {
+  color: orange;
+  font-weight: bold;
+}
+
+.rating-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 245px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  position: relative;
+}
+
+.rating-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.rating-players {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 40px;
+}
+
+.player-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
